@@ -14,8 +14,8 @@
         // output data of each row
         while($row = $result->fetch_assoc()) {
             $imgp = $row["imgname"];
-            $newfile = '../uploads/'.$imgp;
-            $file = '../varified/'.$imgp;
+            $file = '../uploads/'.$imgp;
+            $newfile = '../varified/'.$imgp;
             if (!copy($file, $newfile)) {
                 echo "failed to copy $file...\n";
             }

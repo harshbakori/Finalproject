@@ -16,7 +16,7 @@
             $imgp = $row["imgname"];
             $file = '../uploads/'.$imgp;
             $newfile = '../varified/'.$imgp;
-            if (!copy($file, $newfile)) {
+            if (!unlink($newfile)) {
                 echo "failed to copy $file...\n";
             }
             else{
