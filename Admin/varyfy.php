@@ -10,7 +10,7 @@
     </head>
 
     <body>
-    <?php
+        <?php
             include("navbar.php");
         ?>
         <img src="" alt="">
@@ -37,10 +37,13 @@
                     <th>
                         <h4>result</h4>
                     </th>
+                    <th>
+                        <h4>varyfyed?</h4>
+                    </th>
                 </tr>
                 <?php
 
-         $sql = "SELECT * FROM `imglog` WHERE `varyfied` = 0 ";
+         $sql = "SELECT * FROM `imglog`";
          $result = mysqli_query($db,$sql);
          
          if ($result->num_rows > 0) {
@@ -55,9 +58,15 @@
                   echo "<td><a href='use.php?id=$id' class='signout-btn'>use</a></td> ";
                }else{
                   echo "<td><a href='not_use.php?id=$id' class='signout-btn' style='background: red;'>not_use</a></td> ";
-                  
                }
-               echo "<td>". $row["result"]."</td></tr>";
+               echo "<td>". $row["result"]."</td>";
+               if ($row["varyfied"]==1){
+                    echo "<td><a href='varyfied.php?id=$id' class='signout-btn' style='background: red;'>varyfied</a></td></tr>";
+               }else{
+                    echo "<td><a href='not_varyfied.php?id=$id' class='signout-btn'>not_varified</a></td></tr>";
+
+               }
+
             }
          } else {
             echo "0 results";
