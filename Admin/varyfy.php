@@ -10,6 +10,7 @@
     </head>
 
     <body>
+    is the image usable to in training
         <?php
             include("navbar.php");
         ?>
@@ -32,9 +33,6 @@
                         <h4>Preview</h4>
                     </th>
                     <th>
-                        <h4>use for data</h4>
-                    </th>
-                    <th>
                         <h4>result</h4>
                     </th>
                     <th>
@@ -54,11 +52,7 @@
                echo "<tr><td>" . $row["id"]. "</td><td>" . $row["time"]. "</td> <td>.$imgp.</td>
                <td><img src='$i.'  alt='image preview' style='width : 100px; height : 100px;'> </td>";
                $id = $row["id"];
-               if ($row["to_use"]==0){
-                  echo "<td><a href='use.php?id=$id' class='signout-btn'>use</a></td> ";
-               }else{
-                  echo "<td><a href='not_use.php?id=$id' class='signout-btn' style='background: red;'>not_use</a></td> ";
-               }
+               
                echo "<td>". $row["result"]."</td>";
                if ($row["varyfied"]==1){
                     echo "<td><a href='varyfied.php?id=$id' class='signout-btn' style='background: red;'>varyfied</a></td></tr>";

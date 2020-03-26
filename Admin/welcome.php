@@ -10,6 +10,7 @@
     </head>
 
     <body>
+    to determine result is right or not
     <?php
             include("navbar.php");
         ?>
