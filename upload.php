@@ -32,11 +32,27 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 }
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.<br>";
+    echo 'Sorry, your file was not uploaded.<br>
+    <a href="index.php">retry</a>';
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.<br>";
+        
+          $myfile = fopen("uplodelog.txt", 'a') or die("Unable to open file!");
+          $txt = "" . date("Y/m/d") . " " . date("h:i:sa") . " file uploded";
+          fwrite($myfile, $txt);
+          $txt = " ". basename( $_FILES["fileToUpload"]["name"]). "";
+
+          fwrite($myfile, $txt);
+          fclose($myfile);
+
+          include('/Xam/htdocs/Finalproject/Admin/dbconnecter.php');
+          #include a query
+          $sql = "INSERT INTO `imglog` (`id`, `time`, `imgname`) VALUES ('', '" .date("Y/m/d") . " " . date("h:i:sa") . "', '". basename( $_FILES["fileToUpload"]["name"]). "') ";
+          $result = mysqli_query($db,$sql);
+          
+
         header("Location: afteruplode.php");
     } else {
         echo "Sorry, there was an error uploading your file.<br>";

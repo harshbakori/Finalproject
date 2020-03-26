@@ -1,6 +1,4 @@
 <?php
-
-    echo "this is after uplode ";
     ?>
     <html>
 <link rel="stylesheet" href="css/fileuplode.css" type="text/css">
@@ -14,6 +12,11 @@
         height: 400px;  /* The height is 400 pixels */
         width: 100%;  /* The width is the width of the web page */
        }
+       .result{
+         width: 100%;
+         height: 200px;
+         align-items: center;
+       }
     </style>
   </head>
 
@@ -21,11 +24,15 @@
 
 <body>
 
+        <div class="result">
+        the result is
+        
+        </div>
+
     <h3>My Google Maps Demo(under construction)</h3>
     this are possible clinics near your area based on your browser giolocation we found.
     <!--The div element for the map -->
     <div id="map"></div>
-
 
     <script>
       // Note: This example requires that you consent to location sharing when
