@@ -14,13 +14,16 @@
         // output data of each row
         while($row = $result->fetch_assoc()) {
             $imgp = $row["imgname"];
-            if (!move_uploaded_file( "varified/$imgp","../../uploads" )) { 
-                echo "File cannot be moved! \n"; 
-            } 
-            else{
-                echo "moved";
-                // header("Location: varyfy.php");
+            $file = '../uploads/'.$imgp;
+            $newfile = '../varified/'.$imgp;
+            if (!copy($file, $newfile)) {
+                echo "failed to copy $file...\n";
             }
+            else{
+                echo "copyed";
+                header("Location: varyfy.php");
+            }
+            
         }
     }
 
