@@ -36,6 +36,10 @@
                         <h4>result</h4>
                     </th>
                     <th>
+                        <h4>to use?</h4>
+                    </th>
+                    
+                    <th>
                         <h4>varyfyed?</h4>
                     </th>
                 </tr>
@@ -54,6 +58,8 @@
                $id = $row["id"];
                
                echo "<td>". $row["result"]."</td>";
+               echo "<td>". $row["to_use"]."</td>";
+
                if ($row["varyfied"]==1){
                     echo "<td><a href='varyfied.php?id=$id' class='signout-btn' style='background: red;'>varyfied</a></td></tr>";
                }else{
