@@ -31,43 +31,40 @@
     }
     </style>
 </head>
-
-
-
 <body>
-
-    
     <!-- run detection script  -->
     <?php
-    include('/Xam/htdocs/Finalproject/Admin/dbconnecter.php');
-    $sql = "SELECT max(id),`imgname` from imglog";
-    $result= mysqli_query($db,$sql);
-    
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()) 
-        {
-            $imgp = $row["imgname"];
-            $i ="uploads/".$row["imgname"]."";
+            $i ="uploads/".$_GET['filename'];
             echo "<img src='$i.' class ='result_img'  alt='image preview' style='width : 100px; height : 100px;'>";
-        }
-    }
-    echo "<div class='result'>";
+            echo "<div class='result'>";
+    //execute pythom model to get result
     if($_GET["filename"]){
-    $name = $_GET["filename"];
-    // echo $name."\n";
-    $command = 'python -u "i:\Xam\htdocs\Finalproject\Pyfiles\modelrun.py" '.$name;
-    $command = escapeshellcmd($command);
+        $name = $_GET["filename"];
+        // echo $name."\n";
+        $command = 'python -u "i:\Xam\htdocs\Finalproject\Pyfiles\modelrun.py" '.$name;
+        $command = escapeshellcmd($command);
     $output = shell_exec($command);
     echo $output;
     if(!$output){
         echo "no output";
     }
+    
+    
+    //save result in database
+    include('/Xam/htdocs/Finalproject/Admin/dbconnecter.php');
+    $sql = "UPDATE `imglog` SET `result` = '$output' WHERE `imgname`= '".$_GET["filename"]."'";
+    $result= mysqli_query($db,$sql);
+    if(! $result ) {
+        die('Could not update data: '.mysqli_error($db));
+     }
+     //echo "Updated data successfully\n";
+     
 }
 echo "</div>";
 
 ?>
-
+<a href="index.php">try other img?
+</a>'
     <h3>My Google Maps Demo(under construction)</h3>
     this are possible clinics near your area based on your browser giolocation we found.
     <!-- The div element for the map -->
@@ -102,7 +99,7 @@ echo "</div>";
                 };
                 // console.log(pos);
                 infoWindow.setPosition(pos);
-                infoWindow.setContent('Location found.');
+                infoWindow.setContent('your Location found (maybe inacurate)');
                 infoWindow.open(map);
                 map.setCenter(pos);
             }, function() {
