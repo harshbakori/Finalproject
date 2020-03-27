@@ -42,7 +42,7 @@ if ($uploadOk == 0) {
           $myfile = fopen("uplodelog.txt", 'a') or die("Unable to open file!");
           $txt = "" . date("Y/m/d") . " " . date("h:i:sa") . " file uploded";
           fwrite($myfile, $txt);
-          $txt = " ". basename( $_FILES["fileToUpload"]["name"]). "";
+          $txt = " ". basename( $_FILES["fileToUpload"]["name"]). "\n";
 
           fwrite($myfile, $txt);
           fclose($myfile);
