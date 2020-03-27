@@ -20,7 +20,14 @@
         width: 600px;
         margin: 0 auto;
         padding: 20px;
-        margin-top: 100px;
+    }
+    .result_img {
+        background-color: #ffffff;
+        width: 600px;
+        padding: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
     </style>
 </head>
@@ -29,15 +36,41 @@
 
 <body>
 
-    <div class="result">
+    
+    <!-- run detection script  -->
+    <?php
+    include('/Xam/htdocs/Finalproject/Admin/dbconnecter.php');
+    $sql = "SELECT max(id),`imgname` from imglog";
+    $result= mysqli_query($db,$sql);
+    
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) 
+        {
+            $imgp = $row["imgname"];
+            $i ="uploads/".$row["imgname"]."";
+            echo "<img src='$i.' class ='result_img'  alt='image preview' style='width : 100px; height : 100px;'>";
+        }
+    }
+    echo "<div class='result'>";
+    if($_GET["filename"]){
+    $name = $_GET["filename"];
+    // echo $name."\n";
+    $command = 'python -u "i:\Xam\htdocs\Finalproject\Pyfiles\modelrun.py" '.$name;
+    $command = escapeshellcmd($command);
+    $output = shell_exec($command);
+    echo $output;
+    if(!$output){
+        echo "no output";
+    }
+}
+echo "</div>";
 
-        the result is
-
-    </div>
+?>
 
     <h3>My Google Maps Demo(under construction)</h3>
     this are possible clinics near your area based on your browser giolocation we found.
-    <!--The div element for the map -->
+    <!-- The div element for the map -->
     <div id="map"></div>
 
     <script>
@@ -48,6 +81,7 @@
     var map, infoWindow;
 
     function initMap() {
+        //initialize the map and center it into lang and long given with zoom
         map = new google.maps.Map(document.getElementById('map'), {
             center: {
                 lat: -34.397,
@@ -58,10 +92,11 @@
 
         infoWindow = new google.maps.InfoWindow;
 
-        // Try HTML5 geolocation.
+        // Try HTML5 geolocation. to get your lan and long
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var pos = {
+                    //relode map to your location
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };

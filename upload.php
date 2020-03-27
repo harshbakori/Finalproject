@@ -53,7 +53,7 @@ if ($uploadOk == 0) {
           $result = mysqli_query($db,$sql);
           
 
-        header("Location: afteruplode.php");
+        header("Location: afteruplode.php?filename=". basename( $_FILES["fileToUpload"]["name"])."");
     } else {
         echo "Sorry, there was an error uploading your file.<br>";
     }

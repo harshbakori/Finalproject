@@ -17,7 +17,7 @@
         <!-- <input type="file" name="fileToUpload" id="fileToUpload"> -->
         <h3>File uplode</h3>
 
-        <!-- <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
+        <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <div class="file-upload">
             <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add
                 Image</button>
