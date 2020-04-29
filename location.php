@@ -67,6 +67,6 @@
   </head>
   <body>
     <div id="map"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkSshttxbSqLcz92yzYrEA_mqH91o9SLw&libraries=places&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=APIKEY&libraries=places&callback=initMap" async defer></script>
   </body>
 </html>
