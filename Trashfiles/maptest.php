@@ -4,7 +4,7 @@
     <title>Place Searches</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkSshttxbSqLcz92yzYrEA_mqH91o9SLw&libraries=places&callback=initMap" async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=APIKEY" async defer></script>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
